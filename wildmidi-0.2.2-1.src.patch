@@ -1,0 +1,70 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/wildmidi-0.2.2/configure.ac src/wildmidi-0.2.2/configure.ac
+--- origsrc/wildmidi-0.2.2/configure.ac	2004-01-28 12:25:44.000000000 -0600
++++ src/wildmidi-0.2.2/configure.ac	2007-07-15 01:04:04.328125000 -0500
+@@ -244,7 +244,7 @@
+ esac
+ 
+ case "$host_os" in
+-        *mingw*)
++        cygwin*|*mingw*)
+                 AUDDR="-lwinmm"
+         ;;
+         *)
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/wildmidi-0.2.2/src/wildmidi.c src/wildmidi-0.2.2/src/wildmidi.c
+--- origsrc/wildmidi-0.2.2/src/wildmidi.c	2004-01-28 12:13:46.000000000 -0600
++++ src/wildmidi-0.2.2/src/wildmidi.c	2007-07-15 00:59:18.953125000 -0500
+@@ -43,7 +43,9 @@
+ #include <unistd.h>
+ 
+ #if (defined _WIN32) || (defined __CYGWIN__)
++#ifndef __CYGWIN__
+ # include <conio.h>
++#endif
+ # include <windows.h>
+ # include <mmsystem.h>
+ #else
+@@ -827,7 +829,7 @@
+ 	static char *spinner="|/-\\";
+ 	static int spinpoint = 0;
+ 
+-#ifndef _WIN32
++#if !defined(_WIN32) || defined(__CYGWIN__)
+ 	int my_tty;
+ 	struct termios _tty;
+ 	tcflag_t _res_oflg = _tty.c_oflag; 
+@@ -936,7 +938,7 @@
+ 			WildMidi_Shutdown();
+ 			return 0;
+ 		}
+-#ifndef _WIN32		
++#if !defined(_WIN32) || defined(__CYGWIN__)
+ 		my_tty = fileno(stdin);
+ 		if (isatty(my_tty)) {
+ 			savetty();
+@@ -995,7 +997,7 @@
+ 					break;
+ 
+ 				ch = 0;
+-#ifdef _WIN32
++#if defined(_WIN32) && !defined(__CYGWIN__)
+ 				if (_kbhit()) {
+ 					ch = _getch();
+ 					putch(ch);
+@@ -1028,7 +1030,7 @@
+ 							WildMidi_Shutdown();
+ 							printf("Shutting down Sound System\n");
+ 							close_output();
+-#ifndef _WIN32
++#if !defined(_WIN32) || defined(__CYGWIN__)
+ 							if (isatty(my_tty))
+ 								resetty();
+ #endif
+@@ -1106,7 +1108,7 @@
+ 			printf("oops\n");
+ 		printf("Shutting down Sound System\n");
+ 		close_output();
+-#ifndef _WIN32
++#if !defined(_WIN32) || defined(__CYGWIN__)
+ 		if (isatty(my_tty))
+ 			resetty();
+ #endif
