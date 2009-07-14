@@ -1,0 +1,11 @@
+DESCRIPTION="MIDI to WAV library and frontend"
+HOMEPAGE="http://wildmidi.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="0.2.2-cygwin.patch"
+
+PKG_NAMES="${PN} libWildMidi0 libWildMidi-devel"
+wildmidi_CONTENTS='usr/bin/*.exe usr/share/'
+libWildMidi0_CONTENTS='usr/bin/*-0.dll'
+libWildMidi_devel_CONTENTS='usr/include/ usr/lib/'
+
+CYGCONF_ARGS="--disable-werror"

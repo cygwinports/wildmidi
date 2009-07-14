@@ -1,9 +1,0 @@
-DESCRIPTION="MIDI to WAV library and frontend"
-HOMEPAGE="http://wildmidi.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
-
-PKG_NAMES="${PN} lib${PN}0 lib${PN}-devel"
-PKG_HINTS='setup lib devel'
-PKG_CONTENTS[0]='usr/bin/*.exe usr/share/'
-PKG_CONTENTS[1]='usr/bin/*.dll'
-PKG_CONTENTS[2]='usr/include/ usr/lib/'

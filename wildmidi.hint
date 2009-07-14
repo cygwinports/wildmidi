@@ -1,7 +1,6 @@
 category: Audio
-requires: timidity-eawpatches
-external-source: wildmidi
-sdesc: "MIDI to WAV library (runtime)"
+requires: libgcc1 libWildMidi0
+sdesc: "MIDI to WAV library (sample player)"
 ldesc: "WildMidi is a wave table player that uses gus pat sound sets to 
 play midi file. The WildMidi player is the frontend, and is only 
 designed to pass information to the core library and output any audio 

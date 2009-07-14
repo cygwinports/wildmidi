@@ -1,5 +1,5 @@
 category: Audio
-requires: libwildmidi0
+requires: libWildMidi0
 external-source: wildmidi
 sdesc: "MIDI to WAV library (development)"
 ldesc: "WildMidi is a wave table player that uses gus pat sound sets to 
