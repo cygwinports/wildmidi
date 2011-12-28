@@ -1,0 +1,11 @@
+--- origsrc/wildmidi-0.2.3.5/src/Makefile.am	2011-11-30 14:30:26.000000000 -0600
++++ src/wildmidi-0.2.3.5/src/Makefile.am	2011-12-28 00:51:04.994005700 -0600
+@@ -19,7 +19,7 @@ libWildMidi_la_LDFLAGS=		-version-info $
+ libWildMidi_la_LIBADD=      -lm -lc
+ 
+ bin_PROGRAMS= wildmidi
+-wildmidi_libs=			$(top_builddir)/src/libWildMidi.la
++wildmidi_libs=			libWildMidi.la
+ wildmidi_SOURCES=		wildmidi.c
+ wildmidi_LDADD=			$(AUDDR) $(LDFLAGS) $(wildmidi_libs)
+ wildmidi_DEPENDENCIES=	$(wildmidi_libs)

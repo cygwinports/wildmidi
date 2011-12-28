@@ -1,5 +1,5 @@
 category: Audio
-requires:
+requires: timidity-freepats
 external-source: wildmidi
 sdesc: "MIDI to WAV library (runtime)"
 ldesc: "WildMidi is a wave table player that uses gus pat sound sets to 
