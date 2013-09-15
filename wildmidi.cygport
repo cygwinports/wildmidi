@@ -1,0 +1,34 @@
+NAME="wildmidi"
+VERSION=0.2.3.5
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="MIDI to WAV library"
+DESCRIPTION="WildMidi is a wave table player that uses gus pat sound sets to
+play midi file. The WildMidi player is the frontend, and is only designed to
+pass information to the core library and output any audio data the library
+returns. The core of the project, libWildMidi, is the work horse behind the
+player. Designed to be used in future and existing projects, its capable of
+multithreading and multiprocessing of midi files, allowing for the mixing of
+multiple midi file at any one time if someone had a desire to do so. This
+library is what turns the midi files into audio data using the gus pat
+sets."
+HOMEPAGE="http://wildmidi.sourceforge.net/"
+SRC_URI="mirror://sourceforge/wildmidi/wildmidi-${VERSION}.tar.gz"
+PATCH_URI="
+	0.2.3.4-cygwin.patch
+	0.2.3.5-cygwin64.patch
+	0.2.3.5-docs-timidity.cfg.patch
+	0.2.3.5-parallel-make.patch
+"
+
+PKG_NAMES="${NAME} libWildMidi1 libWildMidi-devel"
+wildmidi_CATEGORY="Audio"
+wildmidi_SUMMARY="MIDI to WAV player/converter"
+wildmidi_CONTENTS="usr/bin/*.exe usr/share/doc/ usr/share/man/man[15]/"
+libWildMidi1_REQUIRES="timidity-freepats"
+libWildMidi1_CONTENTS="usr/bin/cygWildMidi-1.dll"
+libWildMidi_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
+
+CYGCONF_ARGS="--disable-werror --with-wildmidi-cfg=/etc/timidity.cfg"
+
+KEEP_LA_FILES="none"
