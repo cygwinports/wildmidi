@@ -1,6 +1,6 @@
 NAME="wildmidi"
 VERSION=0.2.3.5
-RELEASE=1
+RELEASE=2
 CATEGORY="Libs"
 SUMMARY="MIDI to WAV library"
 DESCRIPTION="WildMidi is a wave table player that uses gus pat sound sets to
@@ -15,6 +15,7 @@ sets."
 HOMEPAGE="http://wildmidi.sourceforge.net/"
 SRC_URI="mirror://sourceforge/wildmidi/wildmidi-${VERSION}.tar.gz"
 PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/wildmidi.git/plain/wildmidi-0.2.2-cfg-abs-path.patch?h=f20
 	0.2.3.4-cygwin.patch
 	0.2.3.5-cygwin64.patch
 	0.2.3.5-docs-timidity.cfg.patch
