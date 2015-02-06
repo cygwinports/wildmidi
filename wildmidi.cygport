@@ -26,7 +26,7 @@ PKG_NAMES="${NAME} libWildMidi1 libWildMidi-devel"
 wildmidi_CATEGORY="Audio"
 wildmidi_SUMMARY="MIDI to WAV player/converter"
 wildmidi_CONTENTS="usr/bin/*.exe usr/share/doc/ usr/share/man/man[15]/"
-libWildMidi1_REQUIRES="timidity-freepats"
+libWildMidi1_REQUIRES="soundfont-fluid-lite-patches"
 libWildMidi1_CONTENTS="usr/bin/cygWildMidi-1.dll"
 libWildMidi_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
 
