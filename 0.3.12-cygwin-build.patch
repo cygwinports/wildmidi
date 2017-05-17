@@ -1,0 +1,26 @@
+--- origsrc/wildmidi-wildmidi-0.3.12/src/CMakeLists.txt	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/src/CMakeLists.txt	2017-05-17 11:18:38.035228700 -0500
+@@ -127,6 +127,11 @@ IF (MSVC)
+     SET(WILDMIDILIBSTATIC "${CMAKE_BINARY_DIR}\\${CMAKE_BUILD_TYPE}\\${LIBRARY_STATIC_NAME}.lib")
+ ENDIF (MSVC)
+ 
++# Cygwin
++IF (CYGWIN)
++    SET(WILDMIDILIB "${CMAKE_BINARY_DIR}/lib${LIBRARY_DYN_NAME}.dll.a")
++ENDIF (CYGWIN)
++
+ # MinGW or MinGW-w64
+ IF (CMAKE_COMPILER_IS_MINGW)
+     SET(WILDMIDILIB "${CMAKE_BINARY_DIR}/lib${LIBRARY_DYN_NAME}.dll.a")
+@@ -223,7 +228,10 @@ IF (UNIX AND NOT APPLE)
+     ENDIF (WANT_STATIC)
+ 
+     IF (BUILD_SHARED_LIBS)
+-        INSTALL(TARGETS libwildmidi_dynamic DESTINATION ${WILDMIDILIB_INSTALLDIR})
++        INSTALL(TARGETS libwildmidi_dynamic
++                LIBRARY DESTINATION ${WILDMIDILIB_INSTALLDIR}
++                RUNTIME DESTINATION bin
++                ARCHIVE DESTINATION ${WILDMIDILIB_INSTALLDIR})
+         IF (WANT_PLAYER)
+             INSTALL(TARGETS wildmidi DESTINATION bin)
+         ENDIF ()

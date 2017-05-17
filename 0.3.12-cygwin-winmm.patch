@@ -1,0 +1,73 @@
+--- origsrc/wildmidi-wildmidi-0.3.12/CMakeLists.txt	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/CMakeLists.txt	2017-05-17 11:21:52.041285200 -0500
+@@ -81,13 +81,13 @@ IF (OPENBSD)  # Set RPATH for OpenBSD so
+     ENDIF ()
+ ENDIF (OPENBSD)
+ 
+-IF (WIN32)
++IF (WIN32 OR CYGWIN)
+     ADD_DEFINITIONS(
+             -DNOMINMAX
+             -DWIN32_LEAN_AND_MEAN
+             -D_CRT_SECURE_NO_WARNINGS
+     )
+-ENDIF (WIN32)
++ENDIF (WIN32 OR CYGWIN)
+ 
+ # Compiler specific settings
+ IF (CMAKE_COMPILER_IS_GNUCC OR (CMAKE_C_COMPILER_ID MATCHES "Clang"))
+@@ -145,7 +145,7 @@ SET(AUDIODRV_OSS)
+ SET(AUDIODRV_OPENAL)
+ 
+ # UNIX-like environments
+-IF (UNIX AND NOT APPLE)
++IF (UNIX AND NOT APPLE AND NOT CYGWIN)
+ 
+     # Go looking for available sound packages for WildMIDI player
+     IF (WANT_PLAYER)
+@@ -232,11 +232,11 @@ IF (APPLE AND WANT_PLAYER)
+     ENDIF ()
+ ENDIF ()
+ 
+-IF (WIN32)
++IF (WIN32 OR CYGWIN)
+     IF (WANT_PLAYER)
+         LINK_LIBRARIES(winmm)
+     ENDIF ()
+-ENDIF (WIN32)
++ENDIF (WIN32 OR CYGWIN)
+ 
+ # ######### General setup ##########
+ INCLUDE_DIRECTORIES(BEFORE "${CMAKE_SOURCE_DIR}/include")
+--- origsrc/wildmidi-wildmidi-0.3.12/src/wildmidi.c	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/src/wildmidi.c	2017-05-17 11:13:14.063027000 -0500
+@@ -51,7 +51,11 @@
+ #include <sys/types.h>
+ #include <fcntl.h>
+ #include <sys/stat.h>
++#ifdef __CYGWIN__
++#include <unistd.h>
++#else
+ #include <conio.h>
++#endif
+ #include <windows.h>
+ #include <mmsystem.h>
+ #define msleep(s) Sleep((s))
+@@ -1689,7 +1693,7 @@ int main(int argc, char **argv) {
+ 					break;
+ 
+ 				ch = 0;
+-#ifdef _WIN32
++#if defined(_WIN32) && !defined(__CYGWIN__)
+ 				if (_kbhit()) {
+ 					ch = _getch();
+ 					_putch(ch);
+@@ -1862,7 +1866,7 @@ end2:		close_output();
+ 
+ /* helper / replacement functions: */
+ 
+-#if !(defined(_WIN32) || defined(__DJGPP__) || defined(WILDMIDI_AMIGA) || defined(__OS2__) || defined(__EMX__))
++#if !(defined(_WIN32) || defined(__CYGWIN__) || defined(__DJGPP__) || defined(WILDMIDI_AMIGA) || defined(__OS2__) || defined(__EMX__))
+ static int msleep(unsigned long milisec) {
+ 	struct timespec req = { 0, 0 };
+ 	time_t sec = (int) (milisec / 1000);

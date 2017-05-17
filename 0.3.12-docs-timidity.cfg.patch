@@ -1,0 +1,170 @@
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man1/wildmidi.1	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man1/wildmidi.1	2017-05-17 11:06:02.276251400 -0500
+@@ -6,7 +6,7 @@ wildmidi \- example player for libWildMi
+ .B libWildMidi
+ .PP
+ .SH FILES
+-.B /etc/wildmidi/wildmidi.cfg
++.B /etc/timidity.cfg
+ .PP
+ .SH SYNOPSIS
+ .B wildmidi [\-behlvwn] [\-c \fIconfig\-file\fB] [\-d \fIaudiodev\fB] [\-m \fIvolume\-level\fB] [\-o \fIwav\-file\fB] \fImidifile ...
+@@ -23,7 +23,7 @@ You can have more than one \fImidifile\f
+ Turns on an 8 point reverb engine that adds depth to the final mix.
+ .P
+ .IP "\fB\-c\fP \fIconfig\-file\fP | \fB\-\-config\fP \fIconfig\-file\fP"
+-Uses the configuration file stated by \fIconfig\-file\fP instead of /etc/wildmidi/wildmidi.cfg
++Uses the configuration file stated by \fIconfig\-file\fP instead of /etc/timidity.cfg
+ .PP
+ .IP "\fB\-d\fP \fIaudiodev\fP | \fB\-\-device=\fIaudiodev\fP"
+ Send the audio to \fIaudiodev\fP instead of the default. ALSA defaults to the system "default" while OSS defaults to "/dev/dsp". Other environments do not support this option.
+@@ -103,7 +103,7 @@ Seek backwards 1 second. Note: Clears ac
+ Quit wildmidi.
+ .PP
+ .SH SEE ALSO
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Close.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Close.3	2017-05-17 11:05:20.230474000 -0500
+@@ -28,7 +28,7 @@ returns \-1 on error, otherwise returns
+ .BR WildMidi_GetInfo (3) ,
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_FastSeek.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_FastSeek.3	2017-05-17 11:05:20.230474000 -0500
+@@ -32,7 +32,7 @@ NOTE: significant delay can occur when u
+ .BR WildMidi_GetInfo (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetInfo.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetInfo.3	2017-05-17 11:05:20.246099100 -0500
+@@ -67,7 +67,7 @@ Reverb is being added to the final outpu
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetOutput.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetOutput.3	2017-05-17 11:05:20.246099100 -0500
+@@ -40,7 +40,7 @@ NOTE: if the return value is less than t
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetString.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_GetString.3	2017-05-17 11:05:20.246099100 -0500
+@@ -27,7 +27,7 @@ Returns a const char pointer to a string
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Init.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Init.3	2017-05-17 11:05:20.246099100 -0500
+@@ -50,7 +50,7 @@ Rounds the fractional or decimal part of
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_MasterVolume.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_MasterVolume.3	2017-05-17 11:05:20.261722900 -0500
+@@ -26,7 +26,7 @@ Returns \-1 on error, otherwise returns
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3),
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Open.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Open.3	2017-05-17 11:05:20.261722900 -0500
+@@ -26,7 +26,7 @@ Returns NULL on error and sends a messag
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_OpenBuffer.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_OpenBuffer.3	2017-05-17 11:05:20.261722900 -0500
+@@ -33,7 +33,7 @@ Returns NULL on error, otherwise returns
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_SetOption.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_SetOption.3	2017-05-17 11:05:20.261722900 -0500
+@@ -54,7 +54,7 @@ Returns \-1 on error, otherwise returns
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+ .BR WildMidi_Shutdown (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Shutdown.3	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man3/WildMidi_Shutdown.3	2017-05-17 11:05:20.277348200 -0500
+@@ -26,7 +26,7 @@ Once this is called, the library is no l
+ .BR WildMidi_GetInfo (3) ,
+ .BR WildMidi_FastSeek (3) ,
+ .BR WildMidi_Close (3) ,
+-.BR wildmidi.cfg (5)
++.BR timidity.cfg (5)
+ .PP
+ .SH AUTHOR
+ Chris Ison <wildcode@users.sf.net>
+--- origsrc/wildmidi-wildmidi-0.3.12/docs/man/man5/wildmidi.cfg.5	2017-02-15 11:22:41.000000000 -0600
++++ src/wildmidi-wildmidi-0.3.12/docs/man/man5/wildmidi.cfg.5	2017-05-17 11:05:20.277348200 -0500
+@@ -1,6 +1,6 @@
+-.TH wildmidi.cfg 5 "10 March 2016" "" "WildMidi Config File"
++.TH timidity.cfg 5 "10 March 2016" "" "WildMidi Config File"
+ .SH NAME
+-wildmidi.cfg \- Config file for libWildMidi
++timidity.cfg \- Config file for libWildMidi
+ .PP
+ .SH LIBRARY
+ .B libWildMidi
+@@ -11,7 +11,7 @@ Contains the patch configuration for lib
+ .nf
+ dir ~/guspats/
+ 
+-source /etc/wildmidi.cfg
++source /etc/timidity.cfg
+ 
+ bank 0
+ 0 acpiano.pat amp=110 env_time4=300

@@ -1,6 +1,8 @@
+inherit cmake
+
 NAME="wildmidi"
-VERSION=0.2.3.5
-RELEASE=2
+VERSION=0.3.12
+RELEASE=1
 CATEGORY="Libs"
 SUMMARY="MIDI to WAV library"
 DESCRIPTION="WildMidi is a wave table player that uses gus pat sound sets to
@@ -12,14 +14,13 @@ multithreading and multiprocessing of midi files, allowing for the mixing of
 multiple midi file at any one time if someone had a desire to do so. This
 library is what turns the midi files into audio data using the gus pat
 sets."
-HOMEPAGE="http://wildmidi.sourceforge.net/"
-SRC_URI="mirror://sourceforge/wildmidi/wildmidi-${VERSION}.tar.gz"
+HOMEPAGE="https://www.mindwerks.net/projects/wildmidi/"
+SRC_URI="https://github.com/Mindwerks/wildmidi/archive/wildmidi-${VERSION}/wildmidi-wildmidi-${VERSION}.tar.gz"
+SRC_DIR="wildmidi-wildmidi-${VERSION}"
 PATCH_URI="
-	http://pkgs.fedoraproject.org/cgit/wildmidi.git/plain/wildmidi-0.2.2-cfg-abs-path.patch?h=f20
-	0.2.3.4-cygwin.patch
-	0.2.3.5-cygwin64.patch
-	0.2.3.5-docs-timidity.cfg.patch
-	0.2.3.5-parallel-make.patch
+	0.3.12-cygwin-build.patch
+	0.3.12-cygwin-winmm.patch
+	0.3.12-docs-timidity.cfg.patch
 "
 
 PKG_NAMES="${NAME} libWildMidi1 libWildMidi-devel"
@@ -30,6 +31,4 @@ libWildMidi1_REQUIRES="soundfont-fluid-lite-patches"
 libWildMidi1_CONTENTS="usr/bin/cygWildMidi-1.dll"
 libWildMidi_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
 
-CYGCONF_ARGS="--disable-werror --with-wildmidi-cfg=/etc/timidity.cfg"
-
-KEEP_LA_FILES="none"
+CYGCMAKE_ARGS="-DWILDMIDI_CFG=/etc/timidity.cfg -DWANT_ALSA=OFF -DWANT_OPENAL=OFF"
