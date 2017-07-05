@@ -1,7 +1,7 @@
 inherit cmake
 
 NAME="wildmidi"
-VERSION=0.3.12
+VERSION=0.4.1
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="MIDI to WAV library"
@@ -23,12 +23,12 @@ PATCH_URI="
 	0.3.12-docs-timidity.cfg.patch
 "
 
-PKG_NAMES="${NAME} libWildMidi1 libWildMidi-devel"
+PKG_NAMES="${NAME} libWildMidi2 libWildMidi-devel"
 wildmidi_CATEGORY="Audio"
 wildmidi_SUMMARY="MIDI to WAV player/converter"
 wildmidi_CONTENTS="usr/bin/*.exe usr/share/doc/ usr/share/man/man[15]/"
 libWildMidi1_REQUIRES="soundfont-fluid-lite-patches"
-libWildMidi1_CONTENTS="usr/bin/cygWildMidi-1.dll"
+libWildMidi2_CONTENTS="usr/bin/cygWildMidi-2.dll"
 libWildMidi_devel_CONTENTS="usr/include/ usr/lib/ usr/share/man/man3/"
 
 CYGCMAKE_ARGS="-DWILDMIDI_CFG=/etc/timidity.cfg -DWANT_ALSA=OFF -DWANT_OPENAL=OFF"

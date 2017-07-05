@@ -54,14 +54,14 @@
  #include <mmsystem.h>
  #define msleep(s) Sleep((s))
 @@ -1689,7 +1693,7 @@ int main(int argc, char **argv) {
- 					break;
  
- 				ch = 0;
+         while (1) {
+             ch = 0;
 -#ifdef _WIN32
 +#if defined(_WIN32) && !defined(__CYGWIN__)
- 				if (_kbhit()) {
- 					ch = _getch();
- 					_putch(ch);
+             if (_kbhit()) {
+                 ch = _getch();
+                 _putch(ch);
 @@ -1862,7 +1866,7 @@ end2:		close_output();
  
  /* helper / replacement functions: */
@@ -69,5 +69,5 @@
 -#if !(defined(_WIN32) || defined(__DJGPP__) || defined(WILDMIDI_AMIGA) || defined(__OS2__) || defined(__EMX__))
 +#if !(defined(_WIN32) || defined(__CYGWIN__) || defined(__DJGPP__) || defined(WILDMIDI_AMIGA) || defined(__OS2__) || defined(__EMX__))
  static int msleep(unsigned long milisec) {
- 	struct timespec req = { 0, 0 };
- 	time_t sec = (int) (milisec / 1000);
+     struct timespec req = { 0, 0 };
+     time_t sec = (int) (milisec / 1000);
